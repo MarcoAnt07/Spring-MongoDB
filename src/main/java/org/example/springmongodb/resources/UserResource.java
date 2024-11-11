@@ -1,6 +1,5 @@
 package org.example.springmongodb.resources;
 
-import jakarta.servlet.Servlet;
 import org.example.springmongodb.domain.User;
 import org.example.springmongodb.dto.UserDTO;
 import org.example.springmongodb.services.UserService;
@@ -43,5 +42,11 @@ public class UserResource {
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@PathVariable String id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
