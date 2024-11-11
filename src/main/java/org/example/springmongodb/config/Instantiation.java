@@ -2,6 +2,7 @@ package org.example.springmongodb.config;
 
 import org.example.springmongodb.domain.Post;
 import org.example.springmongodb.domain.User;
+import org.example.springmongodb.dto.AuthorDTO;
 import org.example.springmongodb.repository.PostRepository;
 import org.example.springmongodb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,8 @@ public class Instantiation implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
 
-        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Aa", "Bb", maria);
-        Post post2 = new Post(null, sdf.parse("21/03/2018"), "Cc", "Dd", maria);
+        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Aa", "Bb", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("21/03/2018"), "Cc", "Dd", new AuthorDTO(maria));
 
         postRepository.deleteAll();
 
