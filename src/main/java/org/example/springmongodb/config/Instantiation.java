@@ -3,6 +3,7 @@ package org.example.springmongodb.config;
 import org.example.springmongodb.domain.Post;
 import org.example.springmongodb.domain.User;
 import org.example.springmongodb.dto.AuthorDTO;
+import org.example.springmongodb.dto.CommentDTO;
 import org.example.springmongodb.repository.PostRepository;
 import org.example.springmongodb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,13 @@ public class Instantiation implements CommandLineRunner {
 
         Post post1 = new Post(null, sdf.parse("21/03/2018"), "Aa", "Bb", new AuthorDTO(maria));
         Post post2 = new Post(null, sdf.parse("21/03/2018"), "Cc", "Dd", new AuthorDTO(maria));
+
+        CommentDTO c1 = new CommentDTO("Aa", sdf.parse("21/03/2018"), new AuthorDTO(alex));
+        CommentDTO c2 = new CommentDTO("Bb", sdf.parse("21/03/2018"), new AuthorDTO(bob));
+        CommentDTO c3 = new CommentDTO("Cc", sdf.parse("21/03/2018"), new AuthorDTO(alex));
+
+        post1.getComments().addAll(Arrays.asList(c1, c2));
+        post2.getComments().addAll(Arrays.asList(c2));
 
         postRepository.deleteAll();
 
